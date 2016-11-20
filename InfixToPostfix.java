@@ -1,7 +1,6 @@
 // Allison Schinagle
 // CS265 Assingment 3
 // Infix to Postfix converter
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Stack;

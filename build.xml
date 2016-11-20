@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project default="all">
+
+    <property name="src-dir" location="./" />
+    <property name="doc-dir" location="doc" />
+
+    <target name="init">
+        <mkdir dir="${doc-dir}" />
+    </target>
+
+    <target name="compile" depends="init">
+        <javac includeantruntime="false" srcdir="${src-dir}" /> 
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname='InfixToPostfix'>
+            <classpath>
+                <pathelement path="${classpath}" />
+                <pathelement location="${src-dir}" />
+            </classpath>
+        </java>
+    </target>
+
+    <target name="doc">
+        <javadoc sourcefiles="InfixToPostfix.java, 
+                              Operand.java, 
+                              Operator.java,
+                              OpType.java,
+                              Token.java" 
+                 destdir="${doc-dir}" />
+    </target>
+
+    <target name="all" depends="init, compile, run, doc" />
+</project>

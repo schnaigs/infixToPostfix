@@ -18,7 +18,6 @@
 //	that holds an entire expression (Token).
 //
 
-
 abstract class Token {
     abstract boolean isOperator();
     abstract boolean isOperand();

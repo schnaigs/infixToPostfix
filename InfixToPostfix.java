@@ -7,8 +7,7 @@ import java.io.FileReader;
 import java.util.Stack;
 
 /**
- * This class converts an infix expression to a postfix expression and evaluates 
- * it.
+ * This class converts an infix expression to a postfix expression and evaluates it.
  * It contains a main function, a function to convert the infix expression to a 
  * postfix expression, a function to evaluate the postfix expression, and helper
  * functions for dealing with complex conditional statements.
@@ -29,7 +28,7 @@ public class InfixToPostfix {
         while ((line = br.readLine()) != null) {
             String[] tokens = line.split(" ");
 
-            Token[] infixTokens = new Token[tokens.length + 1];
+            Token[] infixTokens = new Token[tokens.length];
             for (int i = 0; i < tokens.length; i++) {
                 try {
                     infixTokens[i] = new Operand(Integer.parseInt(tokens[i]));
@@ -40,22 +39,19 @@ public class InfixToPostfix {
             }
 
             Stack<Token> postfixTokens = infixToPostfix(infixTokens);
-
             for (Token token : postfixTokens) {
                 System.out.print(token.toString() + " ");
             }
-            System.out.print("= ");
-            
+
             int result = evaluatePostfix(postfixTokens);
-            System.out.println(result);
+            System.out.println("= " + result);
         }
     }
 
     /**
      * Converts an infix expression, represented as an array of Tokens, to a
-     * postfix expression, represented as a Stack of Tokens.  An algorithm 
-     * was provided, but I found another (similar) one that I found easier to 
-     * follow:
+     * postfix expression, represented as a Stack of Tokens.  An algorithm was
+     * provided, but I found one that I found easier to follow:
      * - Initialize an opstack to store operators.
      * - If the token is an operand, append it to the end of the output list.
      * - If the token is a left parenthesis, push it on the opstack.
@@ -65,9 +61,8 @@ public class InfixToPostfix {
      * - If the token is an operator, *, /, +, or -, push it on the opstack. 
      *   However, first remove any operators already on the opstack that have 
      *   higher or equal precedence and append them to the output list.
-     *   (Cut the red wire... but first cut the blue wire!)
      * - When the input expression has been completely processed, check the 
-     *   opstack.  Any operators still on the stack can be removed and appended
+     *   opstack.  Any operators still on the stack can be removed and appended 
      *   to the end of the output list.
      * (from http://interactivepython.org/runestone/static/pythonds/BasicDS/InfixPrefixandPostfixExpressions.html)
      *
@@ -79,9 +74,6 @@ public class InfixToPostfix {
     public static Stack<Token> infixToPostfix(Token[] infixTokens) {
         Stack<Token> postfixTokens = new Stack<Token>();
         Stack<Operator> opStack = new Stack<Operator>();
-
-        opStack.push(new Operator("("));
-        infixTokens[infixTokens.length - 1] = new Operator(")");
 
         for (Token token : infixTokens) {
             if (token.isOperand()) {
@@ -166,7 +158,7 @@ public class InfixToPostfix {
      */
     public static int evaluatePostfix(Stack<Token> postfixTokens) {
         Stack<Operand> evalStack = new Stack<Operand>();
-        for (Token token : postfixTokens) { // Stacks are iterable, yay!
+        for (Token token : postfixTokens) {
             if (token.isOperand()) {
                 evalStack.push((Operand)token);
             }

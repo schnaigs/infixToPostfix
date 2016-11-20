@@ -46,6 +46,8 @@ public class InfixToPostfix {
             int result = evaluatePostfix(postfixTokens);
             System.out.println("= " + result);
         }
+        br.close();
+        fr.close();
     }
 
     /**

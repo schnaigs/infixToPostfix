@@ -46,7 +46,7 @@ public enum OpType
 
 
     /**
-     * The precedence of the operator. Lower numer = higher precedence.
+     * The precedence of the operator. Higher number = higher precedence.
      */
     private final int precedence;
 

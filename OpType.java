@@ -51,9 +51,8 @@ public enum OpType
     private final int precedence;
 
     /**
-     * Constructs the OpType with its precedence.  Automatically called when an
-     * OpType is declared; cannot be invoked.
-     * 
+     * Constructs the OpType with its precedence.
+     *  
      * @param prec the precedence of the OpType
      */
     OpType(int prec) {
